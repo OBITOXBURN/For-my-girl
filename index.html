@@ -1,49 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>For My Cutieee 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+<style>
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:linear-gradient(270deg,#ffb6c1,#ffc0cb,#ff69b4);
+  background-size:600% 600%;
+  animation:bgMove 10s ease infinite;
+  color:#fff;
+  overflow:hidden;
+  text-align:center;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+section{
+  display:none;
+  height:100vh;
+  width:100vw;
+  padding:20px;
+}
+
+.active{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+h1{font-size:32px; margin-bottom:15px;}
+h2{font-size:24px; margin-bottom:15px;}
+p{font-size:18px; margin-bottom:20px;}
+
+button{
+  padding:12px 26px;
+  margin:8px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{ transform:scale(1.08); }
+
+.gifts{
+  display:flex;
+  gap:20px;
+}
+.gift{
+  width:90px;
+  height:90px;
+  background:#ff6f91;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
+}
+
+.letter{
+  background:#fff;
+  color:#ff4d6d;
+  padding:18px;
+  border-radius:16px;
+  max-width:320px;
+  font-size:15px;
+  text-align:left;
+}
+
+.photo img{
+  width:85%;
+  max-width:280px;
+  border-radius:20px;
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:24px;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  to{ transform:translateY(120vh); opacity:0; }
+}
+
+/* Popup */
+#popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+#popup div{
+  background:#fff;
+  color:#ff4d6d;
+  padding:25px;
+  border-radius:20px;
+  max-width:300px;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="page active">
-    <h1>Hey ❤️</h1>
-    <p>Mere paas tumse kuch poochna hai…</p>
-    <button onclick="nextPage()">Next</button>
-  </div>
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button onclick="toggleMusic()" style="position:fixed;top:15px;right:15px;">🔊</button>
 
-  <div class="page">
-    <h1>Question 1</h1>
-    <p>Kya tum jaanti ho tum kitni special ho?</p>
-    <button onclick="nextPage()">Yes 💕</button>
-  </div>
+<section id="s1" class="active">
+  <h1 id="typeText"></h1>
+  <button onclick="show('s2')">Do you love mee? 💗</button>
+</section>
 
-  <div class="page">
-    <h1>Question 2</h1>
-    <p>Jab tum smile karti ho na, duniya ruk si jaati hai 🥺</p>
-    <button onclick="nextPage()">Next</button>
-  </div>
+<section id="s2">
+  <h2>Do you love mee? 🥺</h2>
+  <button id="noBtn">No 😐</button>
+  <button onclick="show('s3')">Yes 😍</button>
+  <p id="thinkText"></p>
+</section>
 
-  <div class="page">
-    <h1>Question 3</h1>
-    <p>Agar main kahu ki tum meri favourite ho?</p>
-    <button onclick="nextPage()">Hmm 😌</button>
+<section id="s3">
+  <h2>Open first my cutiee 🎁</h2>
+  <div class="gifts">
+    <div class="gift" onclick="show('q1')">🎁</div>
+    <div class="gift">🔒</div>
+    <div class="gift">🔒</div>
   </div>
+</section>
 
-  <div class="page">
-    <h1>Last ❤️</h1>
-    <p>
-      Ye website sirf tumhare liye hai.<br>
-      Kyunki tum special ho… aur hamesha rahogi ✨
-    </p>
-    <button onclick="restart()">Again 🔁</button>
+<section id="q1">
+  <p>Ladai kon krta hai? 😏</p>
+  <button onclick="show('q2')">Avni</button>
+  <button onclick="show('q2')">Youu</button>
+</section>
+
+<section id="q2">
+  <p>Will you be my forever? 💍</p>
+  <button onclick="show('g2')">Yess</button>
+  <button onclick="show('g2')">Ofcourse</button>
+  <button onclick="show('g2')">Never</button>
+</section>
+
+<section id="g2">
+  <h2>Open second meri jaan 💌</h2>
+  <div class="letter">
+    <b>To</b><br>
+    My princess<br>
+    Queen of my heart<br><br>
+    <b>Subject – wanna be yours</b><br><br>
+    Dear love,<br><br>
+    I beg to say that i am falling in love with you and its deep then deeper.
+    i lovee youu soo much.
+    Please be with me always and i will give youu unlimited free love 💕.
+    <br><br>
+    Thankyou<br>
+    Lovee youu jnn 💖
   </div>
+  <br>
+  <button onclick="show('g3')">Open third gift 💘</button>
+</section>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+<section id="g3">
+  <h2>Lovee youu ❤️</h2>
+  <button onclick="hearts();showPop()">Thank youu jaan 💞</button>
+</section>
+
+<!-- POPUP -->
+<div id="popup">
+  <div>
+    <h3>💖 Thank you for opening all gifts 💖</h3>
+    <button onclick="closePop()">Close with love 💕</button>
+  </div>
+</div>
+
+<script>
+/* Page switch */
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* Typewriter */
+const text="Heyy cutieee 💕";
+let i=0;
+(function type(){
+  if(i<text.length){
+    document.getElementById("typeText").innerHTML+=text.charAt(i++);
+    setTimeout(type,120);
+  }
+})();
+
+/* No button escape */
+const noBtn=document.getElementById("noBtn");
+noBtn.onmouseover=()=>{
+  noBtn.style.position="absolute";
+  noBtn.style.left=Math.random()*70+"%";
+  noBtn.style.top=Math.random()*70+"%";
+  document.getElementById("thinkText").innerText="Think again 😜";
+};
+
+/* Hearts */
+function hearts(){
+  for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),3000);
+  }
+}
+
+/* Popup */
+function showPop(){
+  document.getElementById("popup").style.display="flex";
+}
+function closePop(){
+  document.getElementById("popup").style.display="none";
+}
+
+/* Music */
+function toggleMusic(){
+  let m=document.getElementById("bgm");
+  m.paused ? m.play() : m.pause();
+}
+</script>
+
 </body>
-    </html>
+  </html>
