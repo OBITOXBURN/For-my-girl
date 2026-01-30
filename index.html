@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Cutieee 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+  color:#fff;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* IMPORTANT FIX HERE */
+section{
+  display:none;
+  height:100vh;
+  width:100vw;
+  padding:20px;
+}
+
+.active{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+h1{font-size:32px; margin-bottom:15px;}
+h2{font-size:24px; margin-bottom:15px;}
+p{font-size:18px; margin-bottom:20px;}
+
+button{
+  padding:12px 26px;
+  margin:8px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{ transform:scale(1.05); }
+
+.gifts{
+  display:flex;
+  gap:20px;
+}
+.gift{
+  width:90px;
+  height:90px;
+  background:#ff6f91;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.letter{
+  background:#fff;
+  color:#ff4d6d;
+  padding:18px;
+  border-radius:16px;
+  max-width:320px;
+  font-size:15px;
+  text-align:left;
+}
+
+.photo img{
+  width:85%;
+  max-width:280px;
+  border-radius:20px;
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:24px;
+  animation:float 3s linear forwards;
+}
+@keyframes float{
+  0%{transform:translateY(0); opacity:1;}
+  100%{transform:translateY(-120vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<section id="s1" class="active">
+  <h1>Heyy cutieee 💕</h1>
+  <button onclick="show('s2')">Do you love mee? 💗</button>
+</section>
+
+<section id="s2">
+  <h2>Do you love mee? 🥺</h2>
+  <button onclick="think()">No 😐</button>
+  <button onclick="show('s3')">Yes 😍</button>
+  <p id="thinkText"></p>
+</section>
+
+<section id="s3">
+  <h2>Open first my cutiee 🎁</h2>
+  <div class="gifts">
+    <div class="gift" onclick="show('q1')">🎁</div>
+    <div class="gift">🔒</div>
+    <div class="gift">🔒</div>
+  </div>
+</section>
+
+<section id="q1">
+  <p>Ladai kon krta hai? 😏</p>
+  <button onclick="show('q2')">Avni</button>
+  <button onclick="show('q2')">Youu</button>
+</section>
+
+<section id="q2">
+  <p>Will you be my forever? 💍</p>
+  <button onclick="show('g2')">Yess</button>
+  <button onclick="show('g2')">Ofcourse</button>
+  <button onclick="show('g2')">Never</button>
+</section>
+
+<section id="g2">
+  <h2>Open second meri jaan 💌</h2>
+  <div class="letter">
+    <b>To</b><br>
+    My princess<br>
+    Queen of my heart<br><br>
+
+    <b>Subject – wanna be yours</b><br><br>
+
+    Dear love,<br><br>
+    I beg to say that i am falling in love with you and its deep then deeper.
+    i lovee youu soo much.
+    Please be with me always and i will give youu unlimited free love 💕.
+    <br><br>
+    Thankyou<br>
+    Lovee youu jnn 💖
+  </div>
+  <br>
+  <button onclick="show('g3')">Open third gift 💘</button>
+</section>
+
+<section id="g3">
+  <h2>Lovee youu ❤️</h2>
+  <div class="photo">
+    <<img src="photo.jpg" alt="Her Photo" class="photo">
+  </div>
+  <br>
+  <button onclick="hearts()">Thank youu jaan 💞</button>
+</section>
+
+<script>
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function think(){
+  document.getElementById("thinkText").innerText="Think again 😜";
+}
+
+function hearts(){
+  for(let i=0;i<20;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),3000);
+  }
+}
+</script>
+
+</body>
+</html>
